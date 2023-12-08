@@ -1,31 +1,28 @@
 // ignore_for_file: constant_identifier_names
-import 'package:flutter_sdk/interceptors/interceptors.barrel.dart';
+import 'package:flutter_sdk/models/event_types.dart';
 
-IPageView pageViewEventExample = IPageView(
-  name: 'PAGE_VIEW',
+PageViewModel pageViewEventExample = PageViewModel(
   category: 'category',
   subCategory: 'subCategory',
   sessionId: '4020489616172081152',
   userId: '897541074991628287',
-  device: 'mobile',
+  device: 'android',
   os: 'android',
   lang: 'TR',
 );
 
-IInteraction interactionEventExample = IInteraction(
-  name: 'INTERACTION',
-  type: 'click',
+InteractionModel interactionEventExample = InteractionModel(
+  type: InteractionTypes.widgetView,
   interactionId: 'interactionId',
   instanceId: 'instanceId',
   sessionId: '4020489616172081152',
   userId: '897541074991628287',
-  device: 'mobile',
+  device: 'android',
   os: 'android',
   lang: 'TR',
 );
 
-IProductView productViewEventExample = IProductView(
-  name: 'PRODUCT_VIEW',
+ProductViewModel productViewEventExample = ProductViewModel(
   productId: 'prd135246',
   title: 'title',
   url: 'https://www.segmentify.com',
@@ -56,18 +53,64 @@ IProductView productViewEventExample = IProductView(
   },
   sessionId: '4020489616172081152',
   userId: '897541074991628287',
-  device: 'mobile',
+  device: 'android',
   os: 'android',
   lang: 'TR',
 );
 
-ISearch searchEventExample = ISearch(
-  name: 'SEARCH',
+SearchModel searchEventExample = SearchModel(
   query: 'query',
-  type: 'faceted', // Must be 'faceted'
   sessionId: '4020489616172081152',
   userId: '897541074991628287',
-  device: 'mobile',
+  device: 'android',
   os: 'android',
   lang: 'TR',
+);
+
+BasketOperationModel basketOperationEventExample = BasketOperationModel(
+  step: BasketOperationSteps.ADD,
+  productId: 'prd135246',
+  quantity: 1,
+  price: 100,
+  currency: CurrencyTypes.TRY,
+);
+
+CheckoutModel checkoutEventExample = CheckoutModel(
+  step: CheckoutSteps.VIEW_BASKET,
+  totalPrice: 100,
+  currency: CurrencyTypes.TRY,
+  productList: [
+    CheckoutProductModel(productId: 'prd111', quantity: 1, price: 100),
+    CheckoutProductModel(productId: 'prd222', quantity: 3, price: 45.90),
+  ],
+);
+
+CustomEventModel customEventExample = CustomEventModel(
+  type: 'Custom Event',
+  params: {
+    'param1': 'param1',
+    'param2': 'param2',
+  },
+  sessionId: '4020489616172081152',
+  userId: '897541074991628287',
+  device: 'android',
+  os: 'android',
+  lang: 'TR',
+);
+
+UserOperationModel userOperationEventExample = UserOperationModel(
+  step: UserOperationSteps.SIGN_UP,
+  username: 'John Doe',
+  email: 'john@doe.com',
+  age: '25',
+  sessionId: '4020489616172081152',
+  userId: '897541074991628287',
+  device: 'android',
+  os: 'android',
+  lang: 'TR',
+);
+
+UserChangeModel userChangeEventExample = UserChangeModel(
+  oldUserId: 'oldUserId',
+  userId: 'newUserId',
 );

@@ -1,4 +1,3 @@
-import 'dart:convert' as convert;
 import '../utils/storage.dart';
 
 Future<String> getSubDomain() async {
@@ -14,9 +13,7 @@ Future<String> getSubDomain() async {
 
 Future<String> getApiKey() async {
   final config = await getStorageItem(key: 'config');
-  print('Config: $config');
   final apiKey = config?['apiKey'];
-  print('ApiKey: $apiKey');
 
   if (apiKey == null || apiKey == '') {
     throw Exception('Error: API Key is not defined.');
@@ -36,13 +33,13 @@ Future<String> getDataCenterUrl() async {
   return dataCenterUrl;
 }
 
-Future<Object> getApiKeyWithBaseUrl() async {
+Future<Map<String, String>> getApiKeyWithBaseUrl() async {
   final apiKey = await getApiKey();
   final dataCenterUrl = await getDataCenterUrl();
 
   return {
-    apiKey,
-    dataCenterUrl,
+    'apiKey': apiKey,
+    'dataCenterUrl': dataCenterUrl,
   };
 }
 
@@ -59,16 +56,15 @@ Future<String> getDataCenterPushUrl() async {
 
 Future<dynamic> getDeviceInformation() async {
   final device = await getStorageItem(key: 'deviceInformation');
-  final mappedDevice = await convert.jsonDecode(device);
 
   if (device == null) {
     throw Exception('Error: Device is not defined.');
   }
 
-  return mappedDevice;
+  return device;
 }
 
-Future<Object> getConfiguration() async {
+Future<Map<String, dynamic>> getConfiguration() async {
   final config = await getStorageItem(key: 'config');
 
   if (config == null) {
@@ -78,7 +74,7 @@ Future<Object> getConfiguration() async {
   return config;
 }
 
-Future<Object> getUser() async {
+Future<Map<String, dynamic>> getUser() async {
   final user = await getStorageItem(key: 'user');
 
   if (user == null) {

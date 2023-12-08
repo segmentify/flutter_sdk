@@ -4,10 +4,3 @@ const ERROR_COLOR = '\x1b[31m';
 const SUCCESS_COLOR = '\x1b[32m';
 const WARNING_COLOR = '\x1b[33m';
 const INFO_COLOR = '\x1b[34m';
-
-class LOG_LEVELS {
-  static const String ERROR = 'ERROR';
-  static const String SUCCESS = 'SUCCESS';
-  static const String WARNING = 'WARNING';
-  static const String INFO = 'INFO';
-}

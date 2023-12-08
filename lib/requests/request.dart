@@ -1,8 +1,8 @@
-import 'dart:convert' as convert;
 import '../requests/api_getaway.dart';
 import '../constants/app_constants.dart' as constants;
-import '../constants/event_params.dart';
 import '../utils/account_config_getter.dart';
+import '../models/event_types.dart';
+import './events/events.barrel.dart';
 
 // Segmentify Event Sender Class
 class SegmentifyEvent {
@@ -10,69 +10,83 @@ class SegmentifyEvent {
 
   // Request Credentials from Segmentify API (GET)
   Future<List<dynamic>> requestCredentials(int requestedFields) async {
-    print('Request Credentials');
     final response = await dio.get(
         '${constants.dataCenterUrl}${constants.credentialUrl}?count=$requestedFields');
     final responseData = response.data;
-    final responseDataType = responseData.runtimeType;
-    final responseStatusCode = response.statusCode;
-    print('Response Credentials: ${response}');
-    print('Response Credentials Type: ${responseDataType}');
-    print('Response Credentials Status Code: ${responseStatusCode}');
 
     if (response.statusCode == 200 &&
         responseData != null &&
         responseData != '' &&
         responseData != 'null') {
-      print('Response Credentials Return: ${responseData}');
       return responseData;
     }
 
     throw Exception('Failed to load credentials');
   }
 
+  Future<dynamic> pageView(PageViewModel pageView) async {
+    final payload = await pageViewEvent(pageView);
+    final response = await _fireEvent(payload);
+    return response;
+  }
+
+  Future<dynamic> interaction(InteractionModel interaction) async {
+    final payload = await interactionEvent(interaction);
+    final response = await _fireEvent(payload);
+    return response;
+  }
+
+  Future<dynamic> productView(ProductViewModel productView) async {
+    final payload = await productViewEvent(productView);
+    final response = await _fireEvent(payload);
+    return response;
+  }
+
+  Future<dynamic> search(SearchModel search) async {
+    final payload = await searchEvent(search);
+    final response = await _fireEvent(payload);
+    return response;
+  }
+
+  Future<dynamic> basketOperation(BasketOperationModel basket) async {
+    final payload = await basketOperationEvent(basket);
+    final response = await _fireEvent(payload);
+    return response;
+  }
+
+  Future<dynamic> checkout(CheckoutModel checkout) async {
+    final payload = await checkoutEvent(checkout);
+    final response = await _fireEvent(payload);
+    return response;
+  }
+
+  Future<dynamic> custom(CustomEventModel custom) async {
+    final payload = await customEvent(custom);
+    final response = await _fireEvent(payload);
+    return response;
+  }
+
+  Future<dynamic> userOperation(UserOperationModel user) async {
+    final payload = await userOperationEvent(user);
+    final response = await _fireEvent(payload);
+    return response;
+  }
+
+  Future<dynamic> userChange(UserChangeModel user) async {
+    final payload = await userChangeEvent(user);
+    final response = await _fireEvent(payload);
+    return response;
+  }
+
   // Send Event to Segmentify API (POST)
-  Future<dynamic> fireEvent(String type, dynamic eventPayload) async {
-    print('Fire Event Type: $type');
-    final eventType = eventPayload['name'];
-    if (type == eventType) {
-      final requiredParams = SEGMENTIFY_EVENT_PARAMS[type]?['requiredParams'];
-      final optionalParams = SEGMENTIFY_EVENT_PARAMS[type]?['optionalParams'];
+  Future<dynamic> _fireEvent(dynamic eventPayload) async {
+    final apiKey = await getApiKey();
+    final dataCenterUrl = await getDataCenterUrl();
 
-      final deviceInformation = await getDeviceInformation();
-      final deviceType = deviceInformation['deviceType'];
-      final language = await getLanguage();
+    final response = await dio.post(
+        '$dataCenterUrl${constants.eventUrl}?apiKey=$apiKey',
+        data: eventPayload);
 
-      final autocompleteParams = {
-        'lang': language,
-        'os': deviceType,
-        'device': deviceType,
-      };
-
-      requiredParams?.forEach((param) => {
-            if (!eventPayload[param])
-              {
-                if (autocompleteParams[param])
-                  {eventPayload[param] = autocompleteParams[param]}
-                else
-                  {throw Exception('$param is required for $type event')}
-              }
-          });
-
-      optionalParams?.forEach((param) => {
-            if (!eventPayload[param]) {eventPayload.remove(param)}
-          });
-      print('Event Payload: $eventPayload');
-      final apiKey = await getApiKey();
-      final dataCenterUrl = await getDataCenterUrl();
-
-      final response = await dio.post(
-          '$dataCenterUrl${constants.eventUrl}?apiKey=$apiKey',
-          data: eventPayload);
-
-      return response.data;
-    }
-
-    throw Exception('Event type and event payload name does not match');
+    return response.data;
   }
 }
