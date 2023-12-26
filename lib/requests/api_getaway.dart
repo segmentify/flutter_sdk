@@ -6,6 +6,21 @@ import '../utils/storage.dart';
 import '../utils/logger.dart';
 import '../utils/account_config_getter.dart';
 
+/// This class represents an API service that handles HTTP requests.
+/// It provides a method to create a Dio instance with customized options and interceptors.
+/// Creates a Dio instance with customized options and interceptors.
+///
+/// The Dio instance is configured with a connect timeout of [API_GET_AWAY_TIME_OUT] milliseconds.
+/// It also adds an interceptor that sets the necessary headers for the API request.
+/// Additionally, it includes interceptors for handling the response and error cases.
+///
+/// Returns the created Dio instance.
+///
+/// Example usage:
+/// ```dart
+/// final apiService = ApiService();
+/// final dio = apiService.createDio();
+/// ```
 class ApiService {
   Dio createDio() {
     var dio = Dio();

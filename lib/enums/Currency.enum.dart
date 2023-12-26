@@ -1,3 +1,5 @@
+/// Currency enum
+/// This enum is used to define the currency type.
 enum CurrencyTypes {
   AED,
   AFN,

@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names, camel_case_types
 
+/// API error enums.
 enum API_ERROR_ENUMS {
   NO_API_KEY,
   NO_ACCOUNT,
@@ -12,6 +13,8 @@ enum API_ERROR_ENUMS {
   BAD_INPUT,
 }
 
+/// API error messages.
+/// Each error message has a key and a value.
 Map<String, Map<String, dynamic>> API_ERRORS = {
   'NO_API_KEY': {
     'statusCode': API_ERROR_ENUMS.NO_API_KEY,
@@ -60,6 +63,8 @@ Map<String, Map<String, dynamic>> API_ERRORS = {
   },
 };
 
+/// Returns the API error message.
+/// The [errorKey] parameter is required and represents the error key.
 Map<String, dynamic> getApiError(String errorKey) {
   return API_ERRORS[errorKey] ?? {};
 }

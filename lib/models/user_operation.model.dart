@@ -5,6 +5,8 @@ enum UserOperationSteps {
   UPDATE,
 }
 
+/// Returns the string value of the enum
+/// Throws an [Exception] if the enum is not defined.
 String getUserOperationStep(UserOperationSteps step) {
   switch (step) {
     case UserOperationSteps.SIGN_UP:
@@ -21,10 +23,10 @@ String getUserOperationStep(UserOperationSteps step) {
 }
 
 class UserOperationModel {
-  // Required Params
+  /// Required Params
   UserOperationSteps step;
 
-  // Optional Params
+  /// Optional Params
   String? username;
   String? fullName;
   String? email;
@@ -93,18 +95,18 @@ class UserOperationModel {
     return {
       'name': 'USER_OPERATIONS', // USER_OPERATIONS is required
       'step': getUserOperationStep(step),
-      if(username != null && username != '') 'username': username,
-      if(fullName != null && fullName != '') 'fullName': fullName,
-      if(email != null && email != '') 'email': email,
-      if(phone != null && phone != '') 'phone': phone,
-      if(gender != null && gender != '') 'gender': gender,
-      if(age != null && age != '') 'age': age,
-      if(birthdate != null && birthdate != '') 'birthdate': birthdate,
-      if(memberSince != null && memberSince != '') 'memberSince': memberSince,
-      if(location != null && location != '') 'location': location,
-      if(segments != null) 'segments': segments,
-      if(isLogin != null) 'isLogin': isLogin,
-      if(isRegistered != null) 'isRegistered': isRegistered,
+      if (username != null && username != '') 'username': username,
+      if (fullName != null && fullName != '') 'fullName': fullName,
+      if (email != null && email != '') 'email': email,
+      if (phone != null && phone != '') 'phone': phone,
+      if (gender != null && gender != '') 'gender': gender,
+      if (age != null && age != '') 'age': age,
+      if (birthdate != null && birthdate != '') 'birthdate': birthdate,
+      if (memberSince != null && memberSince != '') 'memberSince': memberSince,
+      if (location != null && location != '') 'location': location,
+      if (segments != null) 'segments': segments,
+      if (isLogin != null) 'isLogin': isLogin,
+      if (isRegistered != null) 'isRegistered': isRegistered,
       'sessionId': sessionId,
       'userId': userId,
       'device': device,

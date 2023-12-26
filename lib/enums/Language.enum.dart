@@ -1,3 +1,4 @@
+/// Language types enum.
 enum LanguageTypes {
   TR,
   EN,
@@ -5,6 +6,9 @@ enum LanguageTypes {
   DE,
 }
 
+/// Extension for language types enum.
+/// Returns the value of the language type.
+/// Throws an [Exception] if the language type is not defined.
 extension LanguageTypesExtension on LanguageTypes {
   String get value {
     switch (this) {

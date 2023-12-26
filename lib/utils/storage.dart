@@ -1,6 +1,13 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Sets the value of a storage item with the specified key.
+///
+/// The [key] parameter is required and represents the key of the storage item.
+/// The [value] parameter is dynamic and represents the value to be stored.
+/// The value is encoded as JSON before being stored in SharedPreferences.
+///
+/// Throws an [Exception] if an error occurs while setting the storage item.
 Future<void> setStorageItem({required String key, dynamic value}) async {
   try {
     final prefs = await SharedPreferences.getInstance();
@@ -11,6 +18,16 @@ Future<void> setStorageItem({required String key, dynamic value}) async {
   }
 }
 
+/// Retrieves the value associated with the given [key] from the storage.
+/// If the value is null, returns null.
+/// If the value is a JSON string, decodes it and returns the value of the key.
+/// If the value is not a JSON string, returns the value as is.
+/// Throws an exception if there is an error while retrieving the item.
+///
+/// Example usage:
+/// ```dart
+/// final storageUser = await getStorageItem(key: 'user');
+/// ```
 Future<dynamic> getStorageItem({required String key}) async {
   try {
     final prefs = await SharedPreferences.getInstance();
@@ -33,6 +50,14 @@ Future<dynamic> getStorageItem({required String key}) async {
   }
 }
 
+/// Removes the storage item with the specified key.
+/// The [key] parameter is required and represents the key of the storage item.
+/// Throws an [Exception] if an error occurs while removing the storage item.
+///
+/// Example usage:
+/// ```dart
+/// await removeStorageItem(key: 'user');
+/// ```
 Future<void> initializeStorage() async {
   try {
     final prefs = await SharedPreferences.getInstance();
