@@ -1,8 +1,10 @@
+/// Device OS enum
 enum OsTypes {
   android,
   ios,
 }
 
+/// Get OS type
 String getOsType(OsTypes type) {
   switch (type) {
     case OsTypes.android:
@@ -14,11 +16,13 @@ String getOsType(OsTypes type) {
   }
 }
 
+/// Device type enum
 enum DeviceTypes {
   android,
   ios,
 }
 
+/// Get device type
 String getDeviceType(DeviceTypes type) {
   switch (type) {
     case DeviceTypes.android:
