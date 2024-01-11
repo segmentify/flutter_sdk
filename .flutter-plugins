@@ -1,10 +1,14 @@
 # This is a generated file; do not edit or check into version control.
-device_info_plus=/Users/hasanugur/.pub-cache/hosted/pub.dev/device_info_plus-9.1.1/
-path_provider_linux=/Users/hasanugur/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
-path_provider_windows=/Users/hasanugur/.pub-cache/hosted/pub.dev/path_provider_windows-2.2.1/
-shared_preferences=/Users/hasanugur/.pub-cache/hosted/pub.dev/shared_preferences-2.2.2/
-shared_preferences_android=/Users/hasanugur/.pub-cache/hosted/pub.dev/shared_preferences_android-2.2.1/
-shared_preferences_foundation=/Users/hasanugur/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.3.4/
-shared_preferences_linux=/Users/hasanugur/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.3.2/
-shared_preferences_web=/Users/hasanugur/.pub-cache/hosted/pub.dev/shared_preferences_web-2.2.2/
-shared_preferences_windows=/Users/hasanugur/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.3.2/
+device_info_plus=/Users/sarpkayature/.pub-cache/hosted/pub.dev/device_info_plus-9.1.1/
+firebase_core=/Users/sarpkayature/.pub-cache/hosted/pub.dev/firebase_core-2.24.2/
+firebase_core_web=/Users/sarpkayature/.pub-cache/hosted/pub.dev/firebase_core_web-2.10.0/
+firebase_messaging=/Users/sarpkayature/.pub-cache/hosted/pub.dev/firebase_messaging-14.7.10/
+firebase_messaging_web=/Users/sarpkayature/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.5.18/
+path_provider_linux=/Users/sarpkayature/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+path_provider_windows=/Users/sarpkayature/.pub-cache/hosted/pub.dev/path_provider_windows-2.2.1/
+shared_preferences=/Users/sarpkayature/.pub-cache/hosted/pub.dev/shared_preferences-2.2.2/
+shared_preferences_android=/Users/sarpkayature/.pub-cache/hosted/pub.dev/shared_preferences_android-2.2.1/
+shared_preferences_foundation=/Users/sarpkayature/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.3.4/
+shared_preferences_linux=/Users/sarpkayature/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.3.2/
+shared_preferences_web=/Users/sarpkayature/.pub-cache/hosted/pub.dev/shared_preferences_web-2.2.1/
+shared_preferences_windows=/Users/sarpkayature/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.3.2/

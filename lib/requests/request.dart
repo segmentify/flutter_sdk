@@ -1,8 +1,12 @@
+import 'package:flutter_sdk/constants/app_constants.dart';
+
 import '../requests/api_getaway.dart';
 import '../constants/app_constants.dart' as constants;
 import '../utils/account_config_getter.dart';
 import '../models/event_types.dart';
 import './events/events.barrel.dart';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 // Segmentify Event Sender Class
 /// This class represents a Segmentify event.
@@ -146,5 +150,62 @@ class SegmentifyEvent {
         data: eventPayload);
 
     return response.data;
+  }
+
+  // Sends a PUSH_SUBSCRIPTION event payload to the Segmentify API.
+  // The [payload] parameter is required and represents the firebase token to be sent.
+  // The [userId] parameter is required and represents the user id to be sent.
+  // Returns the response data.
+  Future<dynamic> _firePushSubscriptionEvent(
+      String fireBasePermissionToken, String userId) async {
+    final apiKey = await getApiKey();
+    final dataCenterUrl = await getDataCenterPushUrl();
+    final deviceInformation = await getDeviceInformation();
+
+    final dataToShip = {
+      'providerType': 'FIREBASE',
+      'deviceToken': fireBasePermissionToken,
+      'userId': userId,
+      'os': deviceInformation['deviceType'],
+    };
+
+    final response = await dio.post(
+        '$dataCenterUrl$pushNotificationUrl?apiKey=$apiKey',
+        data: dataToShip);
+
+    return response.data;
+  }
+
+  // Initializes push service taking firebase messaging instance as parameter
+  // Returns a future that submits push request to Segmentify
+  Future<dynamic> initializePushService(dynamic fireBaseInstance) async {
+    final user = await getUser();
+
+    NotificationSettings settings = await fireBaseInstance.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    final pushGranted = settings.authorizationStatus;
+
+    String token = await fireBaseInstance().getToken();
+
+    print('User granted permission: $pushGranted');
+
+    switch (pushGranted) {
+      case AuthorizationStatus.provisional:
+      case AuthorizationStatus.authorized:
+        return await _firePushSubscriptionEvent(token, user['userId']);
+      case AuthorizationStatus.denied:
+        //TODO : Handle denied case
+        break;
+      default:
+        return;
+    }
   }
 }

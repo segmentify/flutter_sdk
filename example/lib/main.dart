@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sdk/main.dart' as Segmentify;
 import 'package:flutter_sdk/models/event_types.dart' as SegmentifyTypes;
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'config.dart';
 
 void main() {
@@ -60,18 +61,29 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   _MyHomePageState() {
-    Segmentify.SegmentifyInitializer(segmentifyConfig: segmentifyConfig, logger: true);
+    Segmentify.SegmentifyInitializer(
+        segmentifyConfig: segmentifyConfig, logger: true);
+
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
   }
 
-  void _incrementCounter()  async{
+  void _incrementCounter() async {
     final segmentifyEvent = await Segmentify.segmentifyEvent();
-    final pageViewPayload = SegmentifyTypes.PageViewModel(category: 'Home Page');
+    final pageViewPayload =
+        SegmentifyTypes.PageViewModel(category: 'Home Page');
     segmentifyEvent.pageView(pageViewPayload);
 
-    final interactionPayload = SegmentifyTypes.InteractionModel(type: SegmentifyTypes.InteractionTypes.widgetView, interactionId: '1', instanceId: '1');
+    final interactionPayload = SegmentifyTypes.InteractionModel(
+        type: SegmentifyTypes.InteractionTypes.widgetView,
+        interactionId: '1',
+        instanceId: '1');
     segmentifyEvent.interaction(interactionPayload);
 
-    final productViewPayload = SegmentifyTypes.ProductViewModel(productId: '123', title: 'Segmentify Saat', price: 129.99, url: 'https://www.segmentify.com/saat-123');
+    final productViewPayload = SegmentifyTypes.ProductViewModel(
+        productId: '123',
+        title: 'Segmentify Saat',
+        price: 129.99,
+        url: 'https://www.segmentify.com/saat-123');
     segmentifyEvent.productView(productViewPayload);
 
     final searchClockPayload = SegmentifyTypes.SearchModel(query: 'saat');
@@ -80,28 +92,40 @@ class _MyHomePageState extends State<MyHomePage> {
     final searchPayload = SegmentifyTypes.SearchModel(query: '');
     segmentifyEvent.search(searchPayload);
 
-    final basketOperationPayload = SegmentifyTypes.BasketOperationModel(step: SegmentifyTypes.BasketOperationSteps.ADD, productId: '32652', quantity: 1, price: 100);
+    final basketOperationPayload = SegmentifyTypes.BasketOperationModel(
+        step: SegmentifyTypes.BasketOperationSteps.ADD,
+        productId: '32652',
+        quantity: 1,
+        price: 100);
     segmentifyEvent.basketOperation(basketOperationPayload);
 
     final checkoutPayload = SegmentifyTypes.CheckoutModel(
-        step: SegmentifyTypes.CheckoutSteps.PURCHASE,
-        totalPrice: 359.99,
-        productList: [
-          SegmentifyTypes.CheckoutProductModel(productId: '32652', price: 100, quantity: 1),
-          SegmentifyTypes.CheckoutProductModel(productId: '12365', price: 259.99, quantity: 2),
-        ],
-        orderNo: 'order123',
-        currency: SegmentifyTypes.CurrencyTypes.TRY,
+      step: SegmentifyTypes.CheckoutSteps.PURCHASE,
+      totalPrice: 359.99,
+      productList: [
+        SegmentifyTypes.CheckoutProductModel(
+            productId: '32652', price: 100, quantity: 1),
+        SegmentifyTypes.CheckoutProductModel(
+            productId: '12365', price: 259.99, quantity: 2),
+      ],
+      orderNo: 'order123',
+      currency: SegmentifyTypes.CurrencyTypes.TRY,
     );
     segmentifyEvent.checkout(checkoutPayload);
 
-    final customPayload = SegmentifyTypes.CustomEventModel(type: 'Custom Event', params: {'param1': 'param1', 'param2': 'param2'});
+    final customPayload = SegmentifyTypes.CustomEventModel(
+        type: 'Custom Event', params: {'param1': 'param1', 'param2': 'param2'});
     segmentifyEvent.custom(customPayload);
 
-    final userOperationPayload = SegmentifyTypes.UserOperationModel(step: SegmentifyTypes.UserOperationSteps.SIGN_UP, username: 'John Doe', email: 'john@doe.com', age: '25');
+    final userOperationPayload = SegmentifyTypes.UserOperationModel(
+        step: SegmentifyTypes.UserOperationSteps.SIGN_UP,
+        username: 'John Doe',
+        email: 'john@doe.com',
+        age: '25');
     segmentifyEvent.userOperation(userOperationPayload);
 
-    final userChangePayload = SegmentifyTypes.UserChangeModel(oldUserId: 'oldUserId', userId: 'newUserId');
+    final userChangePayload = SegmentifyTypes.UserChangeModel(
+        oldUserId: 'oldUserId', userId: 'newUserId');
     segmentifyEvent.userChange(userChangePayload);
   }
 
