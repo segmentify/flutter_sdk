@@ -1,8 +1,8 @@
 const Map<String, dynamic> segmentifyConfig = {
   'config': {
-    'apiKey': '22c34b4b-1672-4b89-9948-35d17c114fc7',
+    'apiKey': '601a3084-d02b-4e78-a474-51ac38342958',
     'dataCenterUrl': 'https://gandalf-qa.segmentify.com',
-    'subDomain': 'https://www.konyalisaat.com.tr/',
+    'subDomain': 'https://www.mototas.com.tr',
     'dataCenterPushUrl': 'https://gimli-qa.segmentify.com',
     'isApnsEnabled': false,
     'language': 'TR',
