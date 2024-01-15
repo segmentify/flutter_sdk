@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.segmentify.segmentifysdk">
     <application
         android:label="example"
         android:name="${applicationName}"

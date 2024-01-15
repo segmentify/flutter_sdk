@@ -1,5 +1,7 @@
 library flutter_sdk;
 
+import 'package:flutter_sdk/requests/push/push_service_sgm.dart';
+
 import 'requests/request.dart';
 import '../utils/storage.dart';
 import '../utils/handle_device_information.dart';
@@ -53,4 +55,12 @@ class SegmentifyInitializer {
 Future<SegmentifyEvent> segmentifyEvent() async {
   final segmentifyEvent = SegmentifyEvent();
   return segmentifyEvent;
+}
+
+/// Segmentify Push Service Initializer
+Future<dynamic> pushServiceInitializer() async {
+  print('Initializing push service');
+  final notifService = SegmentifyNotificationService();
+  print('SegmentifyNotificationService: $notifService');
+  return await notifService.initialize();
 }
