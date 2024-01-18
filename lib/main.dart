@@ -1,5 +1,8 @@
 library flutter_sdk;
 
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+import 'requests/push_service.dart';
 import 'requests/request.dart';
 import '../utils/storage.dart';
 import '../utils/handle_device_information.dart';
@@ -20,17 +23,26 @@ class SegmentifyInitializer {
   final dynamic segmentifyConfig;
   final bool logger;
 
-  SegmentifyInitializer({required this.segmentifyConfig, this.logger = false}) {
+  SegmentifyInitializer(
+      {required this.segmentifyConfig,
+      this.logger = false,
+      FirebaseMessaging? messaging}) {
     SegmentifyInitializeStorage(
-        segmentifyConfig: segmentifyConfig, logger: logger);
+        segmentifyConfig: segmentifyConfig,
+        logger: logger,
+        messaging: messaging);
   }
 
   Future<void> SegmentifyInitializeStorage(
-      {required segmentifyConfig, logger}) async {
+      {required segmentifyConfig, logger, FirebaseMessaging? messaging}) async {
     try {
       await initializeStorage();
       await setStorageItem(key: 'config', value: segmentifyConfig?['config']);
-      if (segmentifyConfig?['user'] != null) {
+      if (segmentifyConfig?['user'] != null &&
+          ((segmentifyConfig?['user']['userId'] != null &&
+                  segmentifyConfig?['user']['userId'] != '') ||
+              (segmentifyConfig?['user']['sessionId'] != null &&
+                  segmentifyConfig?['user']['sessionId'] != ''))) {
         await setStorageItem(key: 'user', value: segmentifyConfig?['user']);
       }
       await setStorageItem(key: 'logger', value: logger);
@@ -38,6 +50,10 @@ class SegmentifyInitializer {
       await setStorageItem(key: 'deviceInformation', value: deviceInformation);
 
       await initialUserHandler();
+
+      if (messaging != null) {
+        await _pushServiceInitializer(messaging: messaging);
+      }
     } catch (e) {
       throw Exception('initializeStorage error: $e');
     }
@@ -53,4 +69,11 @@ class SegmentifyInitializer {
 Future<SegmentifyEvent> segmentifyEvent() async {
   final segmentifyEvent = SegmentifyEvent();
   return segmentifyEvent;
+}
+
+/// Segmentify Push Service Initializer
+Future<dynamic> _pushServiceInitializer(
+    {required FirebaseMessaging messaging}) async {
+  final notificationService = SegmentifyNotificationService();
+  return await notificationService.initialize(messaging);
 }
