@@ -7,8 +7,15 @@ import 'config.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  // Initialization for Flutter
   WidgetsFlutterBinding.ensureInitialized();
+  // Initialization for Firebase
   await Firebase.initializeApp(options: firebaseOptions);
+  // Initialization for segmentify
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+  Segmentify.SegmentifyInitializer(
+      segmentifyConfig: segmentifyConfig, logger: true, messaging: messaging);
+
   runApp(const MyApp());
 }
 
@@ -63,29 +70,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
-  _MyHomePageState() {
-    Segmentify.SegmentifyInitializer(
-        segmentifyConfig: segmentifyConfig, logger: true);
-
-    _requestPermission();
-  }
-
-  void _requestPermission() async {
-    FirebaseMessaging messaging = FirebaseMessaging.instance;
-
-    NotificationSettings settings = await messaging.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true,
-    );
-
-    print('User granted permission: ${settings.authorizationStatus}');
-  }
 
   void _incrementCounter() async {
     final segmentifyEvent = await Segmentify.segmentifyEvent();
