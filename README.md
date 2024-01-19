@@ -303,7 +303,7 @@ void main() async {
 
 ## Example Application
 
-[Segmentify Demo Application](www.github.com/segmentify/segmentify-react-native-example)
+[Segmentify Demo Application](www.github.com/segmentify/segmentify-flutter-example)
 
 ## Reference
 
