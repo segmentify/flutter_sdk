@@ -14,7 +14,7 @@ void main() async {
   // Initialization for segmentify
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   Segmentify.SegmentifyInitializer(
-      segmentifyConfig: segmentifyConfig, logger: true, messaging: messaging);
+      segmentifyConfig: segmentifyConfig, messaging: messaging);
 
   runApp(const MyApp());
 }
