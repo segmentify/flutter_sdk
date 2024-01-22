@@ -4,3 +4,5 @@ const String eventUrl = '/add/events/v1.json';
 
 const String dataCenterPushUrl = 'https://gimli-qa.segmentify.com';
 const String pushNotificationUrl = '/native/subscription/push';
+const String pushNotificationInteractionUrl =
+    '/native/interaction/notification';

@@ -1,6 +1,6 @@
 name: flutter_sdk
 description: A new Flutter package project.
-version: 0.0.1
+version: 0.1.0
 homepage: 'www.segmentify.com'
 
 environment:
@@ -11,8 +11,11 @@ dependencies:
   dartdoc: ^6.3.0
   device_info_plus: ^9.1.0
   dio: ^5.3.3
+  firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.10
   flutter:
     sdk: flutter
+  flutter_local_notifications: ^16.3.0
   http: ^1.1.0
   shared_preferences: ^2.2.2
 
