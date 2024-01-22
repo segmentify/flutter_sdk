@@ -26,7 +26,7 @@ Future<void> setStorageItem({required String key, dynamic value}) async {
 ///
 /// Example usage:
 /// ```dart
-/// final storageUser = await getStorageItem(key: 'user');
+/// final storageUser = await getStorageItem(key: 'sgm_user');
 /// ```
 Future<dynamic> getStorageItem({required String key}) async {
   try {
@@ -50,25 +50,18 @@ Future<dynamic> getStorageItem({required String key}) async {
   }
 }
 
-/// Removes the storage item with the specified key.
-/// The [key] parameter is required and represents the key of the storage item.
-/// Throws an [Exception] if an error occurs while removing the storage item.
-///
-/// Example usage:
-/// ```dart
-/// await removeStorageItem(key: 'user');
-/// ```
+/// Initializes the storage with the required fields.
 Future<void> initializeStorage() async {
   try {
     final prefs = await SharedPreferences.getInstance();
     final isInitialized = prefs.getBool('isInitialized');
     if (isInitialized == null || isInitialized == false) {
       await prefs.setBool('isInitialized', true);
-      await prefs.setString('config',
+      await prefs.setString('sgm_config',
           '{"apiKey": "", "dataCenterUrl": "", "subDomain": "", "dataCenterPushUrl": "", "isApnsEnabled": false}');
       await prefs.setString('deviceInformation',
           '{"deviceName": "", "deviceType": "", "appVersion": ""}');
-      await prefs.setString('user', '{"userId": "", "sessionId": ""}');
+      await prefs.setString('sgm_user', '{"userId": "", "sessionId": ""}');
     }
   } catch (e) {
     throw Exception('initializeStorage error: $e');

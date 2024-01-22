@@ -59,7 +59,7 @@ This is the configuration that you can get from Segmentify.
 
 ```dart
 const Map<String, dynamic> segmentifyConfig = {
-  'config': {
+  'sgm_config': {
     'apiKey': 'your-api-key',
     'dataCenterUrl': 'https://per.segmentify.com',
     'subDomain': 'https://www.yoursite.com',
@@ -67,7 +67,7 @@ const Map<String, dynamic> segmentifyConfig = {
     'isApnsEnabled': false,
     'language': 'TR',
   },
-  'user': {
+  'sgm_user': {
     'userId': '',
     'sessionId': '',
   },

@@ -3,7 +3,7 @@ import '../utils/storage.dart';
 /// Retrieves the subdomain from the storage configuration.
 /// Throws an exception if the subdomain is not defined.
 Future<String> getSubDomain() async {
-  final config = await getStorageItem(key: 'config');
+  final config = await getStorageItem(key: 'sgm_config');
   final subDomain = config?['subDomain'];
 
   if (subDomain == null || subDomain == '') {
@@ -16,7 +16,7 @@ Future<String> getSubDomain() async {
 /// Retrieves the API key from the storage configuration.
 /// Throws an exception if the API key is not defined.
 Future<String> getApiKey() async {
-  final config = await getStorageItem(key: 'config');
+  final config = await getStorageItem(key: 'sgm_config');
   final apiKey = config?['apiKey'];
 
   if (apiKey == null || apiKey == '') {
@@ -29,7 +29,7 @@ Future<String> getApiKey() async {
 /// Retrieves the data center URL from the storage configuration.
 /// Throws an exception if the data center URL is not defined.
 Future<String> getDataCenterUrl() async {
-  final config = await getStorageItem(key: 'config');
+  final config = await getStorageItem(key: 'sgm_config');
   final dataCenterUrl = config?['dataCenterUrl'];
 
   if (dataCenterUrl == null || dataCenterUrl == '') {
@@ -69,7 +69,7 @@ Future<Map<String, String>> getApiKeyWithBaseUrl() async {
 /// Retrieves the data center push URL from the storage configuration.
 /// Throws an exception if the data center push URL is not defined.
 Future<String> getDataCenterPushUrl() async {
-  final config = await getStorageItem(key: 'config');
+  final config = await getStorageItem(key: 'sgm_config');
   final dataCenterPushUrl = config?['dataCenterPushUrl'];
 
   if (dataCenterPushUrl == null || dataCenterPushUrl == '') {
@@ -94,7 +94,7 @@ Future<dynamic> getDeviceInformation() async {
 /// Retrieves the configuration from the storage.
 /// Throws an exception if the configuration is not defined.
 Future<Map<String, dynamic>> getConfiguration() async {
-  final config = await getStorageItem(key: 'config');
+  final config = await getStorageItem(key: 'sgm_config');
 
   if (config == null) {
     throw Exception('Error: Configuration is not defined.');
@@ -113,13 +113,14 @@ Future<Map<String, dynamic>> getConfiguration() async {
 ///
 /// Returns:
 ///   - The user information.
-///
 /// Example usage:
 /// ```dart
-/// final user = await getStorageItem(key: 'user');
+/// final user = await getUser();
+/// print(user['userId']);
+/// print(user['sessionId']);
 /// ```
 Future<Map<String, dynamic>> getUser() async {
-  final user = await getStorageItem(key: 'user');
+  final user = await getStorageItem(key: 'sgm_user');
 
   if (user == null) {
     throw Exception('Error: User is not defined.');
@@ -145,7 +146,7 @@ Future<Map<String, dynamic>> getUser() async {
 /// print(language); // en_US
 /// ```
 Future<String> getLanguage() async {
-  final config = await getStorageItem(key: 'config');
+  final config = await getStorageItem(key: 'sgm_config');
   final language = config?['language'];
 
   if (language == null) {
