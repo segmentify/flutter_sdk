@@ -13,7 +13,7 @@ import '../requests/request.dart';
 /// ```
 Future<dynamic> initialUserHandler() async {
   SegmentifyEvent segmentifyEvent = SegmentifyEvent();
-  final storageUser = await getStorageItem(key: 'user');
+  final storageUser = await getStorageItem(key: 'sgm_user');
   var requiredFields = 0;
   requiredFields = 2;
 
@@ -34,7 +34,7 @@ Future<dynamic> initialUserHandler() async {
     final userId = credentials[0];
     final sessionId = credentials[1];
 
-    setStorageItem(key: 'user', value: {
+    setStorageItem(key: 'sgm_user', value: {
       'userId': userId.toString(),
       'sessionId': sessionId.toString(),
     });
@@ -44,12 +44,12 @@ Future<dynamic> initialUserHandler() async {
         await segmentifyEvent.requestCredentials(requiredFields);
 
     if (!isUserIdExist) {
-      setStorageItem(key: 'user', value: {
+      setStorageItem(key: 'sgm_user', value: {
         'userId': credentials[0].toString(),
         'sessionId': storageUser['sessionId']
       });
     } else if (!isSessionIdExist) {
-      setStorageItem(key: 'user', value: {
+      setStorageItem(key: 'sgm_user', value: {
         'userId': storageUser['userId'],
         'sessionId': credentials[0].toString(),
       });

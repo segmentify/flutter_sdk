@@ -6,13 +6,13 @@ FirebaseOptions get firebaseOptions {
   if (defaultTargetPlatform == TargetPlatform.android) {
     return const FirebaseOptions(
       appId:
-          '1:794335569547:android:2dd7ab3c0e14426066568e', // google-services.json -> client -> client_info -> mobilesdk_app_id
+          'android_appId', // google-services.json -> client -> client_info -> mobilesdk_app_id
       apiKey:
-          'AIzaSyBul9RNuHLGGfjPwH8YdtC5D9qTPC4eDcs', // google-services.json -> client -> api_key -> current
+          'android_apiKey', // google-services.json -> client -> api_key -> current
       projectId:
-          'segmentify-qa', // google-services.json -> project_info -> project_id
+          'android_projectId', // google-services.json -> project_info -> project_id
       messagingSenderId:
-          '794335569547', // google-services.json -> project_info -> project_number
+          'android_messagingSenderId', // google-services.json -> project_info -> project_number
     );
   }
 
