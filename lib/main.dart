@@ -1,4 +1,4 @@
-library flutter_sdk;
+library segmentify_flutter_sdk;
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 

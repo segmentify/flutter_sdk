@@ -1,6 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_sdk/utils/show_push_notification.dart';
+import 'package:segmentify_flutter_sdk/utils/show_push_notification.dart';
 
 import '../utils/account_config_getter.dart';
 import 'events/push_events.dart';

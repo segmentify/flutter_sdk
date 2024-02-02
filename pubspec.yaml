@@ -1,7 +1,7 @@
-name: flutter_sdk
-description: A new Flutter package project.
+name: segmentify_flutter_sdk
+description: Segmentify Flutter SDK.
 version: 0.1.0
-homepage: 'www.segmentify.com'
+homepage: 'https://www.segmentify.com'
 
 environment:
   sdk: '>=3.1.0 <4.0.0'

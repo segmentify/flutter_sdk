@@ -1,6 +1,6 @@
 // ignore_for_file: constant_pattern_never_matches_value_type, avoid_print
 
-import 'package:flutter_sdk/enums/LogLevels.enum.dart';
+import 'package:segmentify_flutter_sdk/enums/LogLevels.enum.dart';
 
 import '../constants/logger.dart';
 

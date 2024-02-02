@@ -1,8 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sdk/main.dart' as Segmentify;
-import 'package:flutter_sdk/models/event_types.dart' as SegmentifyTypes;
+import 'package:segmentify_flutter_sdk/main.dart' as Segmentify;
+import 'package:segmentify_flutter_sdk/models/event_types.dart'
+    as SegmentifyTypes;
 import 'config.dart';
 import 'firebase_options.dart';
 

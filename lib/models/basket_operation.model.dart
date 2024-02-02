@@ -1,5 +1,5 @@
-import 'package:flutter_sdk/enums/Currency.enum.dart';
-export 'package:flutter_sdk/enums/Currency.enum.dart';
+import 'package:segmentify_flutter_sdk/enums/Currency.enum.dart';
+export 'package:segmentify_flutter_sdk/enums/Currency.enum.dart';
 
 enum BasketOperationSteps {
   ADD,
@@ -67,9 +67,9 @@ class BasketOperationModel {
       'name': 'BASKET_OPERATIONS', // BASKET_OPERATION is required
       'step': getBasketOperationStep(step),
       'productId': productId,
-      if(price != null && price != 0) 'price': price,
-      if(quantity != null && quantity != 0) 'quantity': quantity,
-      if(currency != null) 'currency': getCurrencyType(currency!),
+      if (price != null && price != 0) 'price': price,
+      if (quantity != null && quantity != 0) 'quantity': quantity,
+      if (currency != null) 'currency': getCurrencyType(currency!),
       'sessionId': sessionId,
       'userId': userId,
       'device': device,

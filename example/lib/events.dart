@@ -1,5 +1,5 @@
 // ignore_for_file: constant_identifier_names
-import 'package:flutter_sdk/models/event_types.dart';
+import 'package:segmentify_flutter_sdk/models/event_types.dart';
 
 PageViewModel pageViewEventExample = PageViewModel(
   category: 'category',

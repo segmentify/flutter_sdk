@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_sdk/enums/LogLevels.enum.dart';
+import 'package:segmentify_flutter_sdk/enums/LogLevels.enum.dart';
 import '../constants/request.dart';
 import '../constants/api_errors.dart';
 import '../utils/storage.dart';

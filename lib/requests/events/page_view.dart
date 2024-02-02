@@ -1,5 +1,5 @@
 import 'dart:convert' as convert;
-import 'package:flutter_sdk/utils/get_common_params.dart';
+import 'package:segmentify_flutter_sdk/utils/get_common_params.dart';
 import '../../models/event_types.dart';
 
 Future<dynamic> pageViewEvent(PageViewModel payload) async {

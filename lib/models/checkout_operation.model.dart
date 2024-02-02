@@ -1,5 +1,5 @@
-import 'package:flutter_sdk/enums/Currency.enum.dart';
-export 'package:flutter_sdk/enums/Currency.enum.dart';
+import 'package:segmentify_flutter_sdk/enums/Currency.enum.dart';
+export 'package:segmentify_flutter_sdk/enums/Currency.enum.dart';
 
 enum CheckoutSteps {
   CUSTOMER_INFO,

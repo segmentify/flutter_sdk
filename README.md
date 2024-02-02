@@ -78,10 +78,10 @@ User flow is flexible. You can use it like this as well. In this way segmentify 
 
 ### Segmentify Initializer
 
-In this Flutter application, start by importing the flutter_sdk package using the alias Segmentify. Then, in your main method, initialize the package by calling `Segmentify.SegmentifyInitializer` with your specific configuration settings provided in `segmentifyConfig`. This step prepares the package for use throughout your application.
+In this Flutter application, start by importing the segmentify_flutter_sdk package using the alias Segmentify. Then, in your main method, initialize the package by calling `Segmentify.SegmentifyInitializer` with your specific configuration settings provided in `segmentifyConfig`. This step prepares the package for use throughout your application.
 
 ```dart
-import 'package:flutter_sdk/main.dart' as Segmentify;
+import 'package:segmentify_flutter_sdk/main.dart' as Segmentify;
 import 'config.dart';
 
 
@@ -102,8 +102,8 @@ The SegmentifyEvent class contains various functions used to send events to _Seg
 To use Segmentify events, you must import the _Segmentify_ and _SegmentifyTypes_ modules at the top of your file like this:
 
 ```dart
-import 'package:flutter_sdk/main.dart' as Segmentify;
-import 'package:flutter_sdk/models/event_types.dart' as SegmentifyTypes;
+import 'package:segmentify_flutter_sdk/main.dart' as Segmentify;
+import 'package:segmentify_flutter_sdk/models/event_types.dart' as SegmentifyTypes;
 ```
 
 Below is an example of how to use _Segmentify_ events. When creating a model, you can see the required parameters. For instance, a _pageView_ event is created using `SegmentifyTypes.PageViewModel` and sent to _Segmentify_ through `Segmentify.segmentifyEvent`. The variable _responseOfEvent_ captures the response from this event:
@@ -283,8 +283,8 @@ FirebaseOptions get firebaseOptions {
 Segmentify requires your _Firebase_ and _Firebase Messaging_ instance to be passed to SegmentifyInitializer to execute your push flow automatically.
 
 ```dart
-import 'package:flutter_sdk/main.dart' as Segmentify;
-import 'package:flutter_sdk/models/event_types.dart' as SegmentifyTypes;
+import 'package:segmentify_flutter_sdk/main.dart' as Segmentify;
+import 'package:segmentify_flutter_sdk/models/event_types.dart' as SegmentifyTypes;
 import 'config.dart';
 import 'firebase_options.dart';
 

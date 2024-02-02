@@ -1,5 +1,5 @@
 import 'dart:convert' as convert;
-import 'package:flutter_sdk/utils/account_config_getter.dart';
+import 'package:segmentify_flutter_sdk/utils/account_config_getter.dart';
 
 import '../../constants/app_constants.dart';
 import '../api_getaway.dart';
