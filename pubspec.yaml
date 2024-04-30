@@ -1,6 +1,6 @@
 name: segmentify_flutter_sdk
 description: Segmentify Flutter SDK.
-version: 0.1.0
+version: 0.1.1
 homepage: 'https://www.segmentify.com'
 
 environment:

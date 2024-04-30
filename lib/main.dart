@@ -26,15 +26,17 @@ class SegmentifyInitializer {
   SegmentifyInitializer(
       {required this.segmentifyConfig,
       this.logger = false,
-      FirebaseMessaging? messaging}) {
+      FirebaseMessaging? messaging,
+      void Function()? messagingCallback}) {
     SegmentifyInitializeStorage(
         segmentifyConfig: segmentifyConfig,
         logger: logger,
-        messaging: messaging);
+        messaging: messaging,
+        messagingCallback: messagingCallback);
   }
 
   Future<void> SegmentifyInitializeStorage(
-      {required segmentifyConfig, logger, FirebaseMessaging? messaging}) async {
+      {required segmentifyConfig, logger, FirebaseMessaging? messaging, void Function()? messagingCallback}) async {
     try {
       await initializeStorage();
       await setStorageItem(
@@ -54,7 +56,7 @@ class SegmentifyInitializer {
       await initialUserHandler();
 
       if (messaging != null) {
-        await _pushServiceInitializer(messaging: messaging);
+        await _pushServiceInitializer(messaging: messaging, messagingCallback: messagingCallback);
       }
     } catch (e) {
       throw Exception('initializeStorage error: $e');
@@ -75,7 +77,7 @@ Future<SegmentifyEvent> segmentifyEvent() async {
 
 /// Segmentify Push Service Initializer
 Future<dynamic> _pushServiceInitializer(
-    {required FirebaseMessaging messaging}) async {
+    {required FirebaseMessaging messaging, void Function()? messagingCallback}) async {
   final notificationService = SegmentifyNotificationService();
-  return await notificationService.initialize(messaging);
+  return await notificationService.initialize(messaging, messagingCallback);
 }

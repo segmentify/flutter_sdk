@@ -6,7 +6,10 @@ import '../utils/account_config_getter.dart';
 import 'events/push_events.dart';
 
 class SegmentifyNotificationService {
-  Future<void> initialize(FirebaseMessaging messaging) async {
+  void Function()? callback;
+
+  Future<void> initialize(FirebaseMessaging messaging, void Function()? messagingCallback) async {
+    callback = messagingCallback;
     final user = await getUser();
 
     // Request permission for push notifications
@@ -121,11 +124,21 @@ class SegmentifyNotificationService {
     final payload = notificationResponse.payload;
 
     pushInteractionEvent(payload, 'CLICK');
+
+    if (callback != null) {
+      // Call the callback function if it is not null
+      callback!(payload);
+    }
   }
 
   void onDidReceiveLocalNotification(
       int id, String? title, String? body, String? payload) {
     // For iOS 10 or lower, this callback will not be triggered when app is in background or terminated.
     pushInteractionEvent(payload, 'CLICK');
+
+    if (callback != null) {
+      // Call the callback function if it is not null
+      callback!(payload);
+    }
   }
 }
