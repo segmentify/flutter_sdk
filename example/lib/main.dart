@@ -13,9 +13,12 @@ void main() async {
   // Initialization for Firebase
   await Firebase.initializeApp(options: firebaseOptions);
   // Initialization for segmentify
+  void Function() messagingCallback = () {
+    print('Callback function is called');
+  };
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   Segmentify.SegmentifyInitializer(
-      segmentifyConfig: segmentifyConfig, messaging: messaging);
+      segmentifyConfig: segmentifyConfig, messaging: messaging, messagingCallback: messagingCallback);
 
   runApp(const MyApp());
 }
