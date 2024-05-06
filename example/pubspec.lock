@@ -262,13 +262,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0+1"
-  segmentify_flutter_sdk:
-    dependency: "direct main"
-    description:
-      path: ".."
-      relative: true
-    source: path
-    version: "0.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -439,6 +432,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  segmentify_flutter_sdk:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.1.2"
   shared_preferences:
     dependency: "direct main"
     description:

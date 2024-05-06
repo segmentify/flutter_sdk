@@ -1,7 +1,7 @@
 <h1 align="center">Segmentify Flutter SDK</h1>
 
 <p align='center'>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.2-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
@@ -294,8 +294,19 @@ void main() async {
   // Initialization for Firebase
   await Firebase.initializeApp(options: firebaseOptions); // firebase_options.dart
   // Initialization for Segmentify
+  messagingCallback(messageData) {
+    // It is called when a push notification is clicked
+    print('Callback function is called');
+    print('Message Data: $messageData');
+    print('Message Data Body: ${messageData['body']}');
+    print('Message Data Title: ${messageData['title']}');
+  }
+
   FirebaseMessaging messaging = FirebaseMessaging.instance;
-  Segmentify.SegmentifyInitializer(segmentifyConfig: segmentifyConfig, messaging: messaging); //
+  Segmentify.SegmentifyInitializer(
+      segmentifyConfig: segmentifyConfig,
+      messaging: messaging,
+      messagingCallback: messagingCallback);
 
   runApp(const MyApp());
 }
