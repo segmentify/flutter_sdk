@@ -7,7 +7,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
 Future<void> showSegmentifyNotification(
-    String title, String body, String instanceId) async {
+    String title, String body, String data) async {
   final randomInt = Random().nextInt(100);
   var androidDetails = const AndroidNotificationDetails(
       pushAndroidChannelId, pushAndroidChannelName,
@@ -24,6 +24,6 @@ Future<void> showSegmentifyNotification(
       title, // Notification Title
       body, // Notification Body
       generalNotificationDetails, // Notification Details
-      payload: instanceId // Payload
+      payload: data // Payload
       );
 }
