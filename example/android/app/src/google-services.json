@@ -5,6 +5,7 @@
     "project_id": "segmentify-qa",
     "storage_bucket": "segmentify-qa.appspot.com"
   },
+
   "client": [
     {
       "client_info": {
@@ -15,27 +16,27 @@
       },
       "oauth_client": [
         {
-          "client_id": "",
+          "client_id": "794335569547-ng6bboi02t8aksdnq9drqebr3qgu51t7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": ""
+          "current_key": "AIzaSyBul9RNuHLGGfjPwH8YdtC5D9qTPC4eDcs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "",
+              "client_id": "794335569547-ng6bboi02t8aksdnq9drqebr3qgu51t7.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "",
+              "client_id": "794335569547-68bi4nn491b5bp1t8d5ejdk42fvkqi09.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": ""
+                "bundle_id": "com.segmentify-react-native"
               }
             }
           ]

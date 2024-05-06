@@ -13,12 +13,19 @@ void main() async {
   // Initialization for Firebase
   await Firebase.initializeApp(options: firebaseOptions);
   // Initialization for segmentify
-  void Function() messagingCallback = () {
+  messagingCallback(messageData) {
+    // It is called when a push notification is clicked
     print('Callback function is called');
-  };
+    print('Message Data: $messageData');
+    print('Message Data Body: ${messageData['body']}');
+    print('Message Data Title: ${messageData['title']}');
+  }
+
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   Segmentify.SegmentifyInitializer(
-      segmentifyConfig: segmentifyConfig, messaging: messaging, messagingCallback: messagingCallback);
+      segmentifyConfig: segmentifyConfig,
+      messaging: messaging,
+      messagingCallback: messagingCallback);
 
   runApp(const MyApp());
 }

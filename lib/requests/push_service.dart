@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:segmentify_flutter_sdk/utils/show_push_notification.dart';
@@ -6,9 +8,10 @@ import '../utils/account_config_getter.dart';
 import 'events/push_events.dart';
 
 class SegmentifyNotificationService {
-  void Function()? callback;
+  void Function(dynamic message)? callback;
 
-  Future<void> initialize(FirebaseMessaging messaging, void Function()? messagingCallback) async {
+  Future<void> initialize(FirebaseMessaging messaging,
+      void Function(dynamic message)? messagingCallback) async {
     callback = messagingCallback;
     final user = await getUser();
 
@@ -83,15 +86,20 @@ class SegmentifyNotificationService {
     // print('Data: ${message.data}');
     // print('Message ID: ${message.messageId}');
     // print('Collapse Key: ${message.collapseKey}');
-    // print('Message Title: ${message.notification?.title ?? 'Title is null'}');
-    // print('Message Body: ${message.notification?.body ?? 'Body is null'}');
+    // print(
+    //     'Message Notif Title: ${message.notification?.title ?? 'Title is null'}');
+    // print(
+    //     'Message Notif Body: ${message.notification?.body ?? 'Body is null'}');
+
+    // print('Message Title: ${message.data['title'] ?? 'Title is null'}');
+    // print('Message Body: ${message.data['body'] ?? 'Body is null'}');
 
     final data = message.data;
     final title = data['title'] ?? '';
     final body = data['body'] ?? '';
-    final instanceId = data['instanceId'];
+    final stringifiedData = jsonEncode(data);
 
-    showSegmentifyNotification(title, body, instanceId);
+    showSegmentifyNotification(title, body, stringifiedData);
   }
 
   static Future<void> _backgroundMessageHandler(RemoteMessage message) async {
@@ -111,12 +119,13 @@ class SegmentifyNotificationService {
     // print('Sent Time: ${message.sentTime}');
     // print('Thread ID: ${message.threadId}');
     // print('TTL: ${message.ttl}');
+
     final data = message.data;
     final title = data['title'] ?? '';
     final body = data['body'] ?? '';
-    final instanceId = data['instanceId'];
+    final stringifiedData = jsonEncode(data);
 
-    showSegmentifyNotification(title, body, instanceId);
+    showSegmentifyNotification(title, body, stringifiedData);
   }
 
   void onDidReceiveNotificationResponse(
@@ -127,7 +136,8 @@ class SegmentifyNotificationService {
 
     if (callback != null) {
       // Call the callback function if it is not null
-      callback!(payload);
+      final decodedPayload = jsonDecode(payload!);
+      callback!(decodedPayload);
     }
   }
 
@@ -138,7 +148,8 @@ class SegmentifyNotificationService {
 
     if (callback != null) {
       // Call the callback function if it is not null
-      callback!(payload);
+      final decodedPayload = jsonDecode(payload!);
+      callback!(decodedPayload);
     }
   }
 }
